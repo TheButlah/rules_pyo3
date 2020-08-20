@@ -47,7 +47,7 @@ bazel_version(name = "bazel_version")
 # Master branch as of 2020-8-20
 http_archive(
     name = "rules_pyo3",
-    strip_prefix = "rules_pyo3-v0.0.1",
+    strip_prefix = "rules_pyo3-0.0.1",
     urls = ["https://github.com/TheButlah/rules_pyo3/archive/v0.0.1.zip"],
 )
 

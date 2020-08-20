@@ -1,4 +1,4 @@
-from examples.my_ext import sum_as_string
+from my_ext import sum_as_string
 
 
 def main():
