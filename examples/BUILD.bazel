@@ -1,0 +1,13 @@
+load("@rules_python//python:defs.bzl", "py_test")
+load("@rules_pyo3//:build_defs.bzl", "pyo3_extension")
+
+py_test(
+    name = "uses_my_ext",
+    srcs = ["uses_my_ext.py"],
+    deps = [":my_ext"],
+)
+
+pyo3_extension(
+    name = "my_ext",
+    srcs = ["my_ext.rs"],
+)
