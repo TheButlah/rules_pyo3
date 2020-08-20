@@ -1,0 +1,47 @@
+
+[package]
+name = "compile_with_bazel"
+version = "0.1.0"
+authors = ["Ryan Butler <thebutlah@gmail.com>"]
+
+[lib]
+path = "fake_lib.rs"
+
+[dependencies]
+# libc = "0.2.76"
+# parking_lot = "0.11.0"
+# ctor = "0.1"
+# indoc = "0.3.4"
+# inventory = "0.1.4"
+# paste = "0.1.6"
+# unindent = "0.1.4"
+# quote = { version = "1", default-features = false }
+# proc-macro2 = { version = "1", default-features = false }
+pyo3 = { version = "=0.11.1", features = ["extension-module"] }
+
+# [dependencies.syn]
+# version = "1"
+# default-features = false
+# features = ["derive", "parsing", "printing", "clone-impls", "full", "extra-traits"]
+
+[raze]
+# Unique prefix for the generated workspace imports, to avoid conflict with other
+# raze workspaces
+gen_workspace_prefix = "rules_pyo3"
+# The WORKSPACE relative path to the Cargo.toml working directory.
+workspace_path = "//cargo"
+target = "x86_64-unknown-linux-gnu"
+genmode = "Remote"
+
+[raze.crates.proc-macro2.'1.0.19']
+gen_buildrs = true
+
+[raze.crates.pyo3.'0.11.1']
+data_attr = "glob([\"**/*.md\"])"
+additional_flags = [
+    "--cfg=py_sys_config=\\\"WITH_THREAD\\\"",
+    "--cfg=Py_3",
+    "--cfg=Py_3_5",
+    "--cfg=Py_3_6",
+    "--cfg=Py_3_7",
+]
