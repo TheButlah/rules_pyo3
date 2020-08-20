@@ -5,7 +5,6 @@ load("@rules_python//python:defs.bzl", "py_library")
 
 def pyo3_extension(
         name,
-        srcs,
         deps = [],
         **kwargs):
     """
@@ -13,7 +12,6 @@ def pyo3_extension(
 
     Args:
         name: The name of the resulting `py_library`
-        srcs: The .rs files for the extension
         deps: The dependencies of the extension, not including PyO3.
         **kwargs: Forwarded along directly to `rust_library`
     """
@@ -21,13 +19,9 @@ def pyo3_extension(
     name_rs = name + "_rs"
     name_so = name + ".so"
 
-    #rust_deps = ["@rules_pyo3//:pyo3"]
-    #rust_deps = ["//:pyo3"]
-
     rust_library(
         name = name_rs,
-        deps = ["//:pyo3"] + deps,
-        srcs = srcs,
+        deps = ["@rules_pyo3//:pyo3"] + deps,
         crate_type = "cdylib",
         **kwargs
     )

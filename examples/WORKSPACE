@@ -40,14 +40,14 @@ load("@io_bazel_rules_rust//:workspace.bzl", "bazel_version")
 
 bazel_version(name = "bazel_version")
 
-#######################
-# PyO3 via rules_pyo3 #
-#######################
+##############
+# PyO3 Rules #
+##############
 
 http_archive(
     name = "rules_pyo3",
-    strip_prefix = "rules_pyo3-2d4d4f94b6c1130f0e11b1087fbef6269df93ebc",
-    urls = ["https://github.com/TheButlah/rules_pyo3/archive/2d4d4f94b6c1130f0e11b1087fbef6269df93ebc.zip"],
+    strip_prefix = "rules_pyo3-1a861386190e2b2626db8e903ec92e8d2687e680",
+    urls = ["https://github.com/TheButlah/rules_pyo3/archive/1a861386190e2b2626db8e903ec92e8d2687e680.zip"],
 )
 
 load("@rules_pyo3//cargo:crates.bzl", "rules_pyo3_fetch_remote_crates")
