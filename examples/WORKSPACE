@@ -34,7 +34,7 @@ http_archive(
 
 load("@io_bazel_rules_rust//rust:repositories.bzl", "rust_repositories")
 
-rust_repositories()
+rust_repositories(edition = "2018")
 
 load("@io_bazel_rules_rust//:workspace.bzl", "bazel_version")
 
@@ -44,10 +44,11 @@ bazel_version(name = "bazel_version")
 # PyO3 Rules #
 ##############
 
+# Master branch as of 2020-8-20
 http_archive(
     name = "rules_pyo3",
-    strip_prefix = "rules_pyo3-1a861386190e2b2626db8e903ec92e8d2687e680",
-    urls = ["https://github.com/TheButlah/rules_pyo3/archive/1a861386190e2b2626db8e903ec92e8d2687e680.zip"],
+    strip_prefix = "rules_pyo3-v0.0.1",
+    urls = ["https://github.com/TheButlah/rules_pyo3/archive/v0.0.1.zip"],
 )
 
 load("@rules_pyo3//cargo:crates.bzl", "rules_pyo3_fetch_remote_crates")

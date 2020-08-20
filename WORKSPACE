@@ -36,12 +36,7 @@ http_archive(
 
 load("@io_bazel_rules_rust//rust:repositories.bzl", "rust_repositories")
 
-rust_repositories(
-    edition = "2018",
-    iso_date = "2020-08-18",
-    #rustfmt_version = "1.4.19",
-    version = "nightly",
-)
+rust_repositories(edition = "2018")
 
 load("@io_bazel_rules_rust//:workspace.bzl", "bazel_version")
 
