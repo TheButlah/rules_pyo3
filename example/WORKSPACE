@@ -1,5 +1,3 @@
-workspace(name = "rules_pyo3")
-
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 ################
@@ -37,19 +35,16 @@ load("@rules_rust//rust:repositories.bzl", "rust_repositories")
 
 rust_repositories(edition = "2018")
 
-#######################
-# PyO3 via Cargo-Raze #
-#######################
+##############
+# PyO3 Rules #
+##############
 
-load("//cargo:crates.bzl", "rules_pyo3_fetch_remote_crates")
+http_archive(
+    name = "rules_pyo3",
+    strip_prefix = "rules_pyo3-master",
+    urls = ["https://github.com/TheButlah/rules_pyo3/archive/refs/heads/master.zip"],
+)
+
+load("@rules_pyo3//cargo:crates.bzl", "rules_pyo3_fetch_remote_crates")
 
 rules_pyo3_fetch_remote_crates()
-
-#################
-# Example Repos #
-#################
-
-local_repository(
-    name = "example",
-    path = "example",
-)

@@ -17,26 +17,29 @@ path = "fake_lib.rs"
 # unindent = "0.1.4"
 # quote = { version = "1", default-features = false }
 # proc-macro2 = { version = "1", default-features = false }
-pyo3 = { version = "=0.11.1", features = ["extension-module"] }
+pyo3 = { version = "=0.13.2", features = ["extension-module"] }
 
 # [dependencies.syn]
 # version = "1"
 # default-features = false
 # features = ["derive", "parsing", "printing", "clone-impls", "full", "extra-traits"]
 
-[raze]
+[package.metadata.raze]
 # Unique prefix for the generated workspace imports, to avoid conflict with other
 # raze workspaces
 gen_workspace_prefix = "rules_pyo3"
 # The WORKSPACE relative path to the Cargo.toml working directory.
 workspace_path = "//cargo"
-target = "x86_64-unknown-linux-gnu"
+targets = ["x86_64-unknown-linux-gnu"]
 genmode = "Remote"
+# This causes aliases for dependencies to be rendered in the BUILD
+# file located next to this `Cargo.toml` file.
+package_aliases_dir = "."
 
-[raze.crates.proc-macro2.'1.0.19']
-gen_buildrs = true
+# [package.metadata.raze.crates.proc-macro2.'1.0.19']
+# gen_buildrs = true
 
-[raze.crates.pyo3.'0.11.1']
+[package.metadata.raze.crates.pyo3.'0.13.2']
 data_attr = "glob([\"**/*.md\"])"
 additional_flags = [
     "--cfg=py_sys_config=\\\"WITH_THREAD\\\"",
